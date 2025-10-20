@@ -14,6 +14,7 @@
 #include <sys/types.h>
 #include <sys/mman.h>
 #include <sys/syscall.h>
+#include <stdint.h>
  
 pthread_mutex_t done = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t cond  = PTHREAD_COND_INITIALIZER;
