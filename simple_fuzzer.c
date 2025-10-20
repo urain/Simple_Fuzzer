@@ -25,8 +25,8 @@ int MAIN_PID;
 uint64_t MAIN_THREAD_CHECKIN;
 const char *FUZZ_INPUT_CONFIG = "fuzz_config.dat";
 
-const uint64_t MAX_NUM_SYSCALLS = 529;
-const uint64_t MAX_NUM_ARGS     = 12;
+#define MAX_NUM_SYSCALLS 529
+#define MAX_NUM_ARGS     12
 
 struct fuzz_input{
     uint64_t syscall_num;
