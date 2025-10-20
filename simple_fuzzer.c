@@ -91,7 +91,7 @@ void myCheckinThread(void){
  
 void mySyscallThread(void){
     
-    printf("\nSYSCALL TEST: %lld\n", FUZZ_INPUT->syscall_num);
+    printf("\nSYSCALL TEST: %llu\n", FUZZ_INPUT->syscall_num);
     for (int i = 0; i < MAX_NUM_ARGS; i++){
         printf("    %2d: 0x%llx\n", i, FUZZ_INPUT->args[i]);
     }
@@ -248,7 +248,7 @@ int main(int argc, const char * argv[]) {
         // Choose args
         arc4random_buf(FUZZ_INPUT->args, ARGS_SZ);
 
-        printf("FUZZ_INPUT->syscall_num: %lld\n", FUZZ_INPUT->syscall_num);
+        printf("FUZZ_INPUT->syscall_num: %llu\n", FUZZ_INPUT->syscall_num);
         // backup fuzz config data
         FILE *fptr;
         fptr = fopen("fuzz_config.dat","w");
@@ -278,7 +278,7 @@ int main(int argc, const char * argv[]) {
         
         // Check timeout condition
         if ( rc == ETIMEDOUT ){
-            printf("\nTIMED OUT SYSCALL: %lld    TIMES: %lld\n",
+            printf("\nTIMED OUT SYSCALL: %llu    TIMES: %llu\n",
                    FUZZ_INPUT->syscall_num,
                    FUZZ_INPUT->blacklist[FUZZ_INPUT->syscall_num]
                    );
