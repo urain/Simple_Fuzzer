@@ -1,4 +1,9 @@
 // Simple syscall fuzzer. Should be wrapped in a script to autolaunch on exit.
+// Example:
+//      !#/bin/bash
+//      while True; do
+//          ./simple_fuzzer
+//      done
 
 #include <stdio.h>
 #include <stdlib.h>
