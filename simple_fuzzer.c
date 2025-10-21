@@ -4,10 +4,16 @@
 //      while True; do
 //          ./simple_fuzzer
 //      done
+//
+// NOTE: The fuzzer is currently "de-fanged" to prevent the actual fuzzing. This
+// is to prevent the code from being run by users who may not understand what
+// this tool is doing. If you understand what this is doing then you can figure
+// out how to enable the fuzzing portion.
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdint.h>
 #include <signal.h>
 #include <sys/shm.h>
 #include <sys/ipc.h>
@@ -19,8 +25,7 @@
 #include <sys/types.h>
 #include <sys/mman.h>
 #include <sys/syscall.h>
-#include <stdint.h>
- 
+
 pthread_mutex_t done = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t cond  = PTHREAD_COND_INITIALIZER;
 pthread_t FUZZ_THREAD_ID;
@@ -101,6 +106,8 @@ void mySyscallThread(void){
         printf("    %2d: 0x%llx\n", i, FUZZ_INPUT->args[i]);
     }
     
+    /* Intentionally Commented Out */
+    /*
     #pragma clang diagnostic push
     #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     syscall(
@@ -119,6 +126,7 @@ void mySyscallThread(void){
         FUZZ_INPUT->args[11]
     );
     #pragma clang diagnostic pop
+    */
     
     pthread_cond_signal(&cond);
     return;
